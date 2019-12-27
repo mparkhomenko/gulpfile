@@ -1,4 +1,4 @@
-let {task, dest, src, watch, series} = require('gulp'),
+let {task, dest, src, series} = require('gulp'),
     miniCSS = require('gulp-minify-css'),
     renameFile = require('gulp-rename'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -28,12 +28,6 @@ task('javascript', () => {
         .pipe(jsmin('functions.js'))
         .pipe(renameFile('functions.min.js'))
         .pipe(dest('js/'))
-});
-
-task('watch', () => {
-    watch('css/main.css', series('css-main'))
-    watch('js/functions.js', series('javascript'))
-    watch('css/main-mobile.css', series('css-mobile'))
 });
 
 exports.default = series('css-main', 'javascript', 'css-mobile');
