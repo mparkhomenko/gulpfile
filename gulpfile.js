@@ -5,20 +5,11 @@ let {task, dest, src, series} = require('gulp'),
     jsmin = require('gulp-jsmin'),
     cleanCSS = require('gulp-clean-css');
 
-task('css-main', () => {
+task('css', () => {
     return src('css/main.css')
         .pipe(miniCSS('main.css'))
         .pipe(cleanCSS('main.css'))
         .pipe(renameFile('main.min.css'))
-        .pipe(autoprefixer('last 15 versions'))
-        .pipe(dest('css/'))
-});
-
-task('css-mobile', () => {
-    return src('css/main-mobile.css')
-        .pipe(miniCSS('main-mobile.css'))
-        .pipe(cleanCSS('main-mobile.css'))
-        .pipe(renameFile('main-mobile.min.css'))
         .pipe(autoprefixer('last 15 versions'))
         .pipe(dest('css/'))
 });
@@ -30,4 +21,4 @@ task('javascript', () => {
         .pipe(dest('js/'))
 });
 
-exports.default = series('css-main', 'javascript', 'css-mobile');
+exports.default = series('css-main', 'javascript');
